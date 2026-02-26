@@ -1,4 +1,4 @@
-# Simple Quiz Game (Beginner Version)
+ ##Quiz Game CLI##
 
 def start_quiz():
     score = 0
