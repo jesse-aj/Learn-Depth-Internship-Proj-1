@@ -1,13 +1,13 @@
 # Student Record Manager (CLI)
 
-## 📌 Project Description
+##  Project Description
 This is a simple Command Line Interface (CLI) application built using Python.  
 It allows a small institute to manage student records and check performance.
 
 The program is menu-driven and runs entirely in the terminal.
 
 
-## 🚀 Features Implemented
+##  Features Implemented
 
 - Add student (Name, Roll Number, Marks)
 - View all student records
@@ -24,12 +24,11 @@ The program is menu-driven and runs entirely in the terminal.
 - Python 3
 - Command Line Interface (CLI)
 
-student_record_manager/
+Learn-Depth-Internship-Proj-1/
 │── main.py
 │── README.md
 
 
----
 
 ## ▶️ How to Run the Program
 
@@ -46,7 +45,7 @@ python quiz.py
 
 
 
-## 🧠 How It Works
+##  How It Works
 
 - Student records are stored in a list.
 - Each student is saved as a dictionary.
@@ -74,6 +73,6 @@ Exit
 
 
 ## 📌 Author
-Internship CLI Project – Jesse Appiah
+Internship CLI Project – Jesse Obeng Andoh Appiah
 
 
