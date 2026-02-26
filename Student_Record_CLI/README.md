@@ -40,7 +40,7 @@ cd student_record_manager
 
 4. Run the program:
 
-python quiz.py
+python student.py
 
 
 
