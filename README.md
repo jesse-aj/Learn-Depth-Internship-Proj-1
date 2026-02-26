@@ -6,7 +6,6 @@ It allows a small institute to manage student records and check performance.
 
 The program is menu-driven and runs entirely in the terminal.
 
----
 
 ## 🚀 Features Implemented
 
@@ -18,13 +17,63 @@ The program is menu-driven and runs entirely in the terminal.
 - Menu-driven interface
 - Exit option
 
----
+
 
 ## 🛠️ Technologies Used
 
 - Python 3
 - Command Line Interface (CLI)
 
+student_record_manager/
+│── main.py
+│── README.md
+
+
 ---
 
-## 📂 Project Structure
+## ▶️ How to Run the Program
+
+1. Make sure Python is installed on your system.
+2. Open terminal or command prompt.
+3. Navigate to the project folder:
+
+cd student_record_manager
+
+4. Run the program:
+
+python quiz.py
+
+
+
+
+## 🧠 How It Works
+
+- Student records are stored in a list.
+- Each student is saved as a dictionary.
+- Functions are used for each feature.
+- A while loop is used to create the menu system.
+
+
+## 📸 Example Menu
+
+
+===== Student Record Manager =====
+
+Add Student
+
+View All Students
+
+Search Student
+
+Calculate Average Marks
+
+Display Topper
+
+Exit
+
+
+
+## 📌 Author
+Internship CLI Project – Jesse Appiah
+
+
