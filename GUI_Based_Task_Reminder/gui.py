@@ -128,33 +128,38 @@ tk.Button(btn_frame, text="Delete Selected", width=15, command=delete_selected).
 refresh_task_list()  # load tasks when app opens
 
 
+# Tab 3 (Deadlines)
 
+dl_columns = ("Name", "Deadline", "Urgency", "Email")
+dl_tree = ttk.Treeview(tab_deadlines, columns=dl_columns, show="headings", height=12)
 
+for col in dl_columns:
+    dl_tree.heading(col, text=col)
+    dl_tree.column(col, width=145)
 
+dl_tree.pack(fill="both", expand=True, padx=10, pady=10)
 
+#Logic GUI for deadlines
 
+def check_and_show_deadlines():
+    for row in dl_tree.get_children():
+        dl_tree.delete(row)
 
+    flagged = check_deadlines()
+    if not flagged:
+        messagebox.showinfo("All Clear", "No tasks approaching deadlines.")
+        return
 
+    for task in flagged:
+        dl_tree.insert("", tk.END, values=(
+            task["name"],
+            task["deadline"],
+            task["urgency"],
+            task["email"]
+        ))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+tk.Button(tab_deadlines, text="Check Deadlines", width=20,
+          command=check_and_show_deadlines).pack(pady=10)
 
 
 #This runs the Gui
