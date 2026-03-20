@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Internship Project Submission",
+        "description": "Submit final Python GUI project to LearnDepth Academy",
+        "deadline": "2026-03-25",
+        "email": "jesse@example.com",
+        "status": "pending"
+    },
+    {
+        "name": "Database Assignment",
+        "description": "Complete and submit the database normalization assignment",
+        "deadline": "2026-03-21",
+        "email": "jesse@example.com",
+        "status": "pending"
+    },
+    {
+        "name": "Team Meeting Preparation",
+        "description": "Prepare agenda and slides for the weekly team sync meeting",
+        "deadline": "2026-03-22",
+        "email": "jesse@example.com",
+        "status": "pending"
+    }
+]
