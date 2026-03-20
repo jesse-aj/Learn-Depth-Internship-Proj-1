@@ -69,8 +69,3 @@ def check_deadlines():
     return flagged
 
 
-
-    
-add_task("Test Task", "Just testing", "2026-03-18", "jesse@gmail.com")
-print(load_tasks())
-print(check_deadlines())
