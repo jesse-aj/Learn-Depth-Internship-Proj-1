@@ -40,4 +40,27 @@ Task Reminder System
 
     msg.attach(MIMEText(body, "plain"))
 
+ # Connecting to Gmail and send
+    try:
+        server = smtplib.SMTP("smtp.gmail.com", 587)
 
+        server.starttls()  # encrypts the connection for security
+
+        server.login(SENDER_EMAIL, SENDER_PASSWORD)
+
+        server.sendmail(SENDER_EMAIL, receiver_email, msg.as_string())
+
+        server.quit()
+
+        return True, task_name
+    except Exception as e:
+        return False, str(e)
+
+def send_all_reminders(flagged_tasks):
+    "Loop through all flagged tasks and send emails."
+    results = []
+    
+    for task in flagged_tasks:
+        success, info = send_reminder(task)
+        results.append((success, info))
+    return results
