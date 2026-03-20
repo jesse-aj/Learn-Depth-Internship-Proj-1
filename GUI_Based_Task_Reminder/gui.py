@@ -67,6 +67,16 @@ def submit_task():
     add_task(name, desc, deadline, email)
     messagebox.showinfo("Success", f'Task "{name}" added successfully!')
 
+     # Clear fields after saving
+    entry_name.delete(0, tk.END)
+    entry_desc.delete(0, tk.END)
+    entry_deadline.delete(0, tk.END)
+    entry_email.delete(0, tk.END)
+
+    # refresh_task_list()  # update View Tasks tab instantly
+tk.Button(tab_add, text="Add Task", width=20, command=submit_task).grid(
+    row=4, column=1, pady=15, sticky="e")
+
 
 
 
