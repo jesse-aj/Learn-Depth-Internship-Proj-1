@@ -1,4 +1,3 @@
-
 # GUI-Based Task Reminder and Email Notification System
 
 A Python desktop application for managing tasks and sending automated email
@@ -8,8 +7,10 @@ Python Programming Internship.
 ## Features
 - Add tasks with name, description, deadline, and email
 - View and delete saved tasks in a clean table interface
+- Mark tasks as completed directly from the interface
 - Automatically detect overdue, due today, and due soon tasks
 - Send email reminders via Gmail SMTP
+- Auto-checks deadlines on startup and alerts user immediately
 - Local JSON storage — no database required
 
 ## Project Structure
@@ -37,13 +38,16 @@ GUI_Based_Task_Reminder/
 1. Go to the Add Task tab and fill in task details
 2. Click Add Task to save
 3. View all tasks in the View Tasks tab
-4. Click Check Deadlines to see approaching deadlines
-5. Confirm to send email reminders to task owners
+4. Select a task and click Mark Complete to update its status
+5. Click Check Deadlines to see approaching deadlines
+6. Confirm to send email reminders to task owners
+7. App automatically alerts you of flagged tasks on startup
 
 ## Notes
 - Deadline format must be YYYY-MM-DD (e.g. 2026-03-25)
 - Email reminders require an active internet connection
 - App Password is required — your regular Gmail password will not work
+- Completed tasks are still visible in View Tasks for record keeping
 
 ## Author
 Built by Jesse | LearnDepth Academy Python Internship
