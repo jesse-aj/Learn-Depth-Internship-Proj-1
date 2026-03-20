@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from task_manager import add_task, load_tasks, delete_task, check_deadlines
-from email_notifier import send_all_reminders
+from task_manager import add_task, load_tasks, delete_task, check_deadlines, save_tasks
 
 
 #  MAIN WINDOW
@@ -118,6 +117,23 @@ def delete_selected():
         delete_task(task_name)
         refresh_task_list()
 
+
+def mark_complete():
+    selected = tree.selection()
+    if not selected:
+        messagebox.showwarning("No Selection", "Please select a task to mark complete.")
+        return
+    task_name = tree.item(selected[0])["values"][0]
+    
+    # Load, update, save
+    tasks = load_tasks()
+    for task in tasks:
+        if task["name"] == task_name:
+            task["status"] = "completed"
+    save_tasks(tasks)
+    refresh_task_list()
+    messagebox.showinfo("Done", f'Task "{task_name}" marked as completed!')
+
 #Creates buttons 
 btn_frame = tk.Frame(tab_view)
 
@@ -125,6 +141,7 @@ btn_frame.pack(pady=5)
 
 tk.Button(btn_frame, text="Refresh",       width=15, command=refresh_task_list).pack(side="left", padx=5)
 tk.Button(btn_frame, text="Delete Selected", width=15, command=delete_selected).pack(side="left", padx=5)
+tk.Button(btn_frame, text="Mark Complete", width=15, command=mark_complete).pack(side="left", padx=5)
 
 refresh_task_list()  # load tasks when app opens
 
@@ -175,9 +192,22 @@ def check_and_show_deadlines():
 
         summary = f"Sent: {len(sent)}  |  Failed: {len(failed)}"
         messagebox.showinfo("Email Summary", summary)
-        
+
 tk.Button(tab_deadlines, text="Check Deadlines", width=20,
           command=check_and_show_deadlines).pack(pady=10)
+
+
+def startup_check():
+    flagged = check_deadlines()
+    if flagged:
+        names = "\n".join([f"- {t['name']} ({t['urgency']})" for t in flagged])
+        messagebox.showwarning(
+            "Deadline Alert",
+            f"{len(flagged)} task(s) need attention:\n\n{names}"
+        )
+
+startup_check()
+
 
 #This runs the Gui
 root.mainloop()
