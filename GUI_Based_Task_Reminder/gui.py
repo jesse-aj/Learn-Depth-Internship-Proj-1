@@ -73,9 +73,85 @@ def submit_task():
     entry_deadline.delete(0, tk.END)
     entry_email.delete(0, tk.END)
 
-    # refresh_task_list()  # update View Tasks tab instantly
+    refresh_task_list()  # update View Tasks tab instantly
 tk.Button(tab_add, text="Add Task", width=20, command=submit_task).grid(
     row=4, column=1, pady=15, sticky="e")
+
+
+#Tab 2 (View Task)
+columns = ("Name", "Deadline", "Status", "Email")
+tree = ttk.Treeview(tab_view, columns=columns, show="headings", height=12)
+
+for col in columns:
+    tree.heading(col, text=col)
+    tree.column(col, width=140)
+
+tree.pack(fill="both", expand=True, padx=10, pady=10)
+
+def refresh_task_list():
+
+    # Clear current rows
+    for row in tree.get_children():
+        tree.delete(row)
+
+    # Re-insert from file
+    for task in load_tasks():
+        tree.insert("", tk.END, values=(
+            task["name"],
+            task["deadline"],
+            task["status"],
+            task["email"]
+        ))
+
+def delete_selected():
+
+    selected = tree.selection()
+
+    if not selected:
+        messagebox.showwarning("No Selection", "Please select a task to delete.")
+        return
+    task_name = tree.item(selected[0])["values"][0]
+    confirm = messagebox.askyesno("Confirm Delete", f'Delete task "{task_name}"?')
+
+    if confirm:
+        delete_task(task_name)
+        refresh_task_list()
+
+#Creates buttons 
+btn_frame = tk.Frame(tab_view)
+
+btn_frame.pack(pady=5)
+
+tk.Button(btn_frame, text="Refresh",       width=15, command=refresh_task_list).pack(side="left", padx=5)
+tk.Button(btn_frame, text="Delete Selected", width=15, command=delete_selected).pack(side="left", padx=5)
+
+refresh_task_list()  # load tasks when app opens
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
