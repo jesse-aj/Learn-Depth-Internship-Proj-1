@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from task_manager import add_task, load_tasks, delete_task, check_deadlines
+from email_notifier import send_all_reminders
 
 
 #  MAIN WINDOW
@@ -158,9 +159,25 @@ def check_and_show_deadlines():
             task["email"]
         ))
 
+
+    # Ask user if they want to send reminders
+    send = messagebox.askyesno(
+        "Send Reminders?",
+        f"{len(flagged)} task(s) flagged. Send email reminders now?"
+    )
+
+    if send:
+        from email_notifier import send_all_reminders
+        results = send_all_reminders(flagged)
+
+        sent     = [r for r in results if r[0]]
+        failed   = [r for r in results if not r[0]]
+
+        summary = f"Sent: {len(sent)}  |  Failed: {len(failed)}"
+        messagebox.showinfo("Email Summary", summary)
+        
 tk.Button(tab_deadlines, text="Check Deadlines", width=20,
           command=check_and_show_deadlines).pack(pady=10)
-
 
 #This runs the Gui
 root.mainloop()
