@@ -43,6 +43,31 @@ tk.Label(tab_add, text="Email:").grid(row=3, column=0, padx=10, pady=8, sticky="
 entry_email = tk.Entry(tab_add, width=40)
 entry_email.grid(row=3, column=1, padx=10, pady=8)
 
+#This cleans the entries when submit is clicked 
+def submit_task():
+    name     = entry_name.get().strip()
+    desc     = entry_desc.get().strip()
+    deadline = entry_deadline.get().strip()
+    email    = entry_email.get().strip()
+
+    #Validation(No-empty feilds)
+    if not all([name, desc, deadline, email]):
+        messagebox.showwarning("Missing Info", "Please fill in all feilds!")
+        return
+    
+    #Validate deadline format
+    try:
+        from datetime import datetime
+        datetime.strptime(deadline, "%Y-%m-%d")
+    except ValueError:
+        messagebox.showerror("Invalid Date", "Use format YYYY-MM-DD e.g 2026-03-25")
+        return
+    
+    
+    add_task(name, desc, deadline, email)
+    messagebox.showinfo("Success", f'Task "{name}" added successfully!')
+
+
 
 
 
